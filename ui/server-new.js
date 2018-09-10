@@ -1,0 +1,89 @@
+define([
+        "dojo/_base/declare",
+        "dojox/mvc/getPlainValue",
+        "dojox/mvc/at",
+        "dojox/mvc/getStateful",
+        "dojo/when",
+        "aps/Memory",
+        "aps/View",
+        "aps/ResourceStore"
+    ],
+    function (
+        declare,
+        getPlainValue,
+        at,
+        getStateful,
+        when,
+        Memory,
+        View,
+        Store
+    ) {
+        return declare(View, {
+            init: function () {
+
+                /* Declare the data sources */
+                this.vpsModel = getStateful({
+                    "aps": {
+                        "type": "https://github.com/for93t/aps2-boilerplate/vps/1.0"
+                    },
+                    "name": "",
+                    "os": "centos7"
+                });
+
+                /* Define the OS selection list */
+                var oses = new Memory({
+                    idProperty: "value",
+                    data: [
+                        {value: "centos7", label: "CentOS-7"},
+                        {value: "windows2012", label: "Windows 2012 Server"}
+                    ]
+                });
+
+                /* Define and return widgets */
+                return ["aps/Panel", {
+                    id: this.genId("srvNew_form")
+                }, [
+                    ["aps/FieldSet", {
+                        id: this.genId("srvNew_properties"),
+                        title: "General"
+                    }, [
+                        ["aps/TextBox", {
+                            id: this.genId("srvNew_name"),
+                            label: "Server Name",
+                            value: at(this.vpsModel, "name"),
+                            required: true
+                        }],
+                        ["aps/Select", {
+                            id: this.genId("srvNew_os"),
+                            label: "Operating System",
+                            store: oses,
+                            value: at(this.vpsModel, "os"),
+                            required: true
+                        }]
+                    ]]
+                ]];
+
+            },    // End of Init
+
+            /* Create handlers for the navigation buttons */
+
+            onCancel: function () {
+                aps.apsc.gotoView("servers");
+            },
+
+            onSubmit: function () {
+                aps.context.subscriptionId = aps.context.vars.management.aps.subscription;
+
+                var vpsStore = new Store({
+                    apsType: "https://github.com/for93t/aps2-boilerplate/vps/1.0",
+                    target: "/aps/2/resources/" + aps.context.vars.management.aps.id + "/vpses"
+                });
+                when(vpsStore.put(getPlainValue(this.vpsModel)),
+                    function () {
+                        aps.apsc.gotoView("servers");
+                    }
+                );
+            }
+
+        });    // End of Declare
+    });        // End of Define

@@ -1,0 +1,66 @@
+<application packaged="2018-09-10T00:00:00" version="2.0" xmlns="http://aps-standard.org/ns/2">
+    <id>https://github.com/for93t/aps2-boilerplate</id>
+    <name>APS2 Boilerplate</name>
+    <version>2.0</version>
+    <release>0</release>
+    <homepage>https://github.com/for93t/aps2-boilerplate</homepage>
+    <vendor>
+        <name>Dmitry Lomakin</name>
+        <homepage>https://github.com/for93t</homepage>
+    </vendor>
+    <packager>
+        <name>Dmitry Lomakin</name>
+        <homepage>https://github.com/for93t</homepage>
+    </packager>
+    <presentation>
+        <summary>APS2 Boilerplate</summary>
+        <description>Scaffolding for APS2 applications.</description>
+        <categories>
+            <category>Samples</category>
+        </categories>
+        <navigation id="ccp" label="VPS Management">
+            <plugs-to id="http://www.parallels.com/ccp/2"/>
+            <var name="management" type-id="https://github.com/for93t/aps2-boilerplate/management/1.0"/>
+            <view id="servers" label="Servers" src="ui/servers.js">
+                <view id="server-new" label="New VPS" src="ui/server-new.js">
+                    <controls>
+                        <cancel/>
+                        <submit/>
+                    </controls>
+                </view>
+            </view>
+        </navigation>
+    </presentation>
+    <license-agreement must-accept="true">
+        <free/>
+        <text>
+            <name>End-User License Agreement</name>
+            <file>https://opensource.org/licenses/MIT</file>
+        </text>
+    </license-agreement>
+    <upgrade match="version=ge=1.0, release=ge=0"/>
+    <service id="apps">
+        <schema path="schemas/apps.schema.gen"/>
+        <code engine="php" path="scripts/apps.php"/>
+        <presentation>
+            <name>VPS cloud globals</name>
+            <summary>VPS cloud application global service</summary>
+        </presentation>
+    </service>
+    <service id="managements">
+        <schema path="schemas/managements.schema.gen"/>
+        <code engine="php" path="scripts/managements.php"/>
+        <presentation>
+            <name>VPS Management</name>
+            <summary>VPS management environment</summary>
+        </presentation>
+    </service>
+    <service id="vpses">
+        <schema path="schemas/vpses.schema.gen"/>
+        <code engine="php" path="scripts/vpses.php"/>
+        <presentation>
+            <name>Virtual Private Server</name>
+            <summary>Cloud virtual private server</summary>
+        </presentation>
+    </service>
+</application>
