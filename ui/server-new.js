@@ -1,5 +1,6 @@
 define([
         "dojo/_base/declare",
+        "dojo/has",
         "dojox/mvc/getPlainValue",
         "dojox/mvc/at",
         "dojox/mvc/getStateful",
@@ -10,6 +11,7 @@ define([
     ],
     function (
         declare,
+        has,
         getPlainValue,
         at,
         getStateful,
@@ -40,7 +42,7 @@ define([
                 });
 
                 /* Define and return widgets */
-                return ["aps/Panel", {
+                return [has('aps-bs') ? "aps/Panel" : "aps/Container", {
                     id: this.genId("srvNew_form")
                 }, [
                     ["aps/FieldSet", {
@@ -68,7 +70,7 @@ define([
             /* Create handlers for the navigation buttons */
 
             onCancel: function () {
-                aps.apsc.gotoView("servers");
+                aps.apsc.gotoView(has('aps-bs') ? "servers" : "servers-ccpv1");
             },
 
             onSubmit: function () {
@@ -80,7 +82,7 @@ define([
                 });
                 when(vpsStore.put(getPlainValue(this.vpsModel)),
                     function () {
-                        aps.apsc.gotoView("servers");
+                        aps.apsc.gotoView(has('aps-bs') ? "servers" : "servers-ccpv1");
                     }
                 );
             }

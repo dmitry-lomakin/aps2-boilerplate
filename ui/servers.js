@@ -1,9 +1,11 @@
 define([
     "dojo/_base/declare",
+    "dojo/has",
     "aps/View",
     "aps/ResourceStore"
 ], function (
     declare,
+    has,
     View,
     Store
 ) {
@@ -18,7 +20,7 @@ define([
             /* Define a handler for the *New* button click */
             var add = function () {
                 /* Start the process of creating a VPS by going to the relevant view */
-                aps.apsc.gotoView("server-new");
+                aps.apsc.gotoView(has('aps-bs') ? "server-new" : "server-new-ccpv1");
             };
             /* Define and return widgets */
             return ["aps/Grid", {

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/aps/2/ui/runtime/client/aps/aps.js"> </script>
+    <script>
+        require([
+            "aps/createCCPv2ViewForCCPv1",
+            "aps/ready!"
+        ], function (createCCPv2ViewForCCPv1) {
+            createCCPv2ViewForCCPv1('./servers.js', 'servers-view-compatibility');
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
