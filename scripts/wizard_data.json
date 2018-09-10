@@ -1,61 +1,61 @@
 {
-"defaults": {
-	"appId": "https://github.com/for93t/aps2-boilerplate/app/1.0",
-	"apsName": "VPS Demo with Deployment Configuration", 
-	"apsVersion": "2.2",
-	"apsResources": [],
-	"resourceTypes": [
-  		{
-  			"name": "VPS Demo - App REF",
-  			"id": -500001,
-  			"resClass": "rc.saas.service.link",
-  			"required": true,
-  			"actParams": {
-	  			"app_id": "idOAID",
-	  			"resource_uid": "idglobals"
-  			}
-  		},
-	    {
-			"name": "VPS Demo - Management Environment", 
-			"id": -500002, 
-			"resClass": "rc.saas.service", 
-			"required": true, 
-			"actParams": {
-				 "service_id": "managements",
-				 "autoprovide_service": 1
-			}
-		},
-		{
-			"name": "VPS Demo - Server",
-			"id": -500003,
-			"resClass": "rc.saas.service",
-			"required": false,
-			"actParams": {
-				"service_id": "vpses",
-				"autoprovide_service": 0
-			}
-		}
-	], 
+  "defaults": {
+    "appId": "http://for93t.github.com/aps2-boilerplate/app/1.0",
+    "apsName": "VPS Demo with Deployment Configuration",
+    "apsVersion": "2.2",
+    "apsResources": [],
+    "resourceTypes": [
+      {
+        "name": "VPS Demo - App REF",
+        "id": -500001,
+        "resClass": "rc.saas.service.link",
+        "required": true,
+        "actParams": {
+          "app_id": "idOAID",
+          "resource_uid": "idglobals"
+        }
+      },
+      {
+        "name": "VPS Demo - Management Environment",
+        "id": -500002,
+        "resClass": "rc.saas.service",
+        "required": true,
+        "actParams": {
+          "service_id": "managements",
+          "autoprovide_service": 1
+        }
+      },
+      {
+        "name": "VPS Demo - Server",
+        "id": -500003,
+        "resClass": "rc.saas.service",
+        "required": false,
+        "actParams": {
+          "service_id": "vpses",
+          "autoprovide_service": 0
+        }
+      }
+    ],
     "serviceTemplate": {
-		"id": -600001,
-		"name": "Simplest VPS cloud demo services", 
-		"resources": [
-			{
-				"limit": 1, 
-				"unlimited": false, 
-				"rtID": -500001
-			}, 
-			{
-				"limit": 1, 
-				"unlimited": false, 
-				"rtID": -500002
-			}, 
-			{
-				"limit": 0, 
-				"unlimited": true, 
-				"rtID": -500003
-			}
-		]
-	}
-}
+      "id": -600001,
+      "name": "VPS cloud demo services",
+      "resources": [
+        {
+          "limit": 1,
+          "unlimited": false,
+          "rtID": -500001
+        },
+        {
+          "limit": 1,
+          "unlimited": false,
+          "rtID": -500002
+        },
+        {
+          "limit": 0,
+          "unlimited": true,
+          "rtID": -500003
+        }
+      ]
+    }
+  }
 }

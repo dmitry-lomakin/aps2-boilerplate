@@ -4,13 +4,13 @@ require "aps/2/runtime.php";
 
 /**
  * Class app presents application and its global parameters
- * @type("https://github.com/for93t/aps2-boilerplate/app/1.0")
+ * @type("http://for93t.github.com/aps2-boilerplate/app/1.0")
  * @implements("http://aps-standard.org/types/core/application/1.0","http://odin.com/init-wizard/config/1.0")
  */
 class app extends APS\ResourceBase
 {
     /**
-     * @link("https://github.com/for93t/aps2-boilerplate/management/1.0[]")
+     * @link("http://for93t.github.com/aps2-boilerplate/management/1.0[]")
      */
     public $managements;
 
