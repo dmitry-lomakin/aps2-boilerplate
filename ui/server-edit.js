@@ -24,7 +24,7 @@ define([
                 /* Declare the data sources */
                 this.vpsModel = getStateful({
                     "aps": {
-                        "type": "http://for93t.github.com/aps2-boilerplate/vps/1.0",
+                        "type": "http://for93t.github.com/aps2-boilerplate/vps/1.0"
                     },
                     "name": "",
                     "os": "centos7"
