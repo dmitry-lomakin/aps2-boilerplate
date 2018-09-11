@@ -21,30 +21,41 @@ define([
                 aps.apsc.gotoView("server-new");
             };
             /* Define and return widgets */
-            return ["aps/Grid", {
-                id: this.genId("srv_grid"),
-                store: vpsStore,
-                columns: [{
-                    field: "name",
-                    name: "Name"
-                }, {
-                    field: "os",
-                    name: "Operating System"
-                }
+            return [
+                "aps/Grid",
+                {
+                    id: this.genId("srv_grid"),
+                    store: vpsStore,
+                    apsResourceViewId: "server-edit",
+                    columns: [
+                        {
+                            field: "name",
+                            name: "Name"
+                        },
+                        {
+                            field: "os",
+                            name: "Operating System"
+                        }
+                    ]
+                },
+                [
+                    [
+                        "aps/Toolbar", [
+                            [
+                                "aps/ToolbarButton", {
+                                    id: this.genId("srv_new"),
+                                    iconClass: "fa-plus",
+                                    type: "primary",
+                                    label: "New",
+                                    onClick: add
+                                }
+                            ]
+                        ]
+                    ]
                 ]
-            }, [
-                ["aps/Toolbar", [
-                    ["aps/ToolbarButton", {
-                        id: this.genId("srv_new"),
-                        iconClass: "fa-plus",
-                        type: "primary",
-                        label: "New",
-                        onClick: add
-                    }]
-                ]]
-            ]];
+            ];
 
-        }, // End of Init
+        },
 
         onContext: function () {
             this.byId("srv_grid").refresh();

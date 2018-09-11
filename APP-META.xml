@@ -2,7 +2,7 @@
     <id>http://for93t.github.com/aps2-boilerplate</id>
     <name>APS2 Boilerplate</name>
     <version>2.0</version>
-    <release>0</release>
+    <release>8</release>
     <homepage>https://github.com/for93t/aps2-boilerplate</homepage>
     <vendor>
         <name>Dmitry Lomakin</name>
@@ -23,6 +23,13 @@
             <var name="management" type-id="http://for93t.github.com/aps2-boilerplate/management/1.0"/>
             <view id="servers" label="Servers" src="ui/servers.js">
                 <view id="server-new" label="New VPS" src="ui/server-new.js">
+                    <controls>
+                        <cancel/>
+                        <submit/>
+                    </controls>
+                </view>
+                <view id="server-edit" label="Edit VPS" src="ui/server-edit.js">
+                    <var name="server" type-id="http://for93t.github.com/aps2-boilerplate/vps/1.0"/>
                     <controls>
                         <cancel/>
                         <submit/>
