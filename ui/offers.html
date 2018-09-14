@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/aps/2/ui/runtime/client/aps/aps.js"></script>
+    <script>
+        require([
+            "dojo/when",
+            "dijit/registry",
+
+            "aps/ResourceStore",
+            "aps/load",
+
+            "./displayError.js",
+
+            "aps/ready!"
+        ], function (
+            when,
+            registry,
+
+            Store,
+            load,
+
+            displayError
+        ) {
+            var store = new Store({
+                target:     "/aps/2/resources/" + aps.context.vars.app.aps.id + "/offers"
+            });
+            load(["aps/PageContainer", { id: "page" }, [
+                ["aps/Grid", {
+                    id:                "offers_grid",
+                    selectionMode:     "multiple",
+                    apsResourceViewId: "offer-edit",
+                    columns:   [
+                        { field: "profileName",  name: "Name", type: "resourceName" },
+                        { field: "product.name", name: "Product name" },
+                        { field: "product.type", name: "Type" }
+                    ],
+                    store: store
+                }, [
+                    [
+                        "aps/Toolbar",
+                        { id: "offers_toolbar" },
+                        [
+                            ["aps/ToolbarButton", { id: "offers_new",    iconClass: "sb-add-new", label: "New" }],
+                            ["aps/ToolbarButton", { id: "offers_delete", iconClass: "sb-delete",  label: "Delete", requireItems: true }]
+                        ]
+                    ]
+                ]]
+            ]]).then(function() {
+                registry.byId("offers_new").on("click", function() {
+                    aps.apsc.gotoView("offer-new");
+                });
+
+                registry.byId("offers_delete").on("click", function() {
+                    var self = this;
+                    if (!confirm("Are you sure you want to delete Offers?")) {
+                        self.cancel();
+                        return;
+                    }
+                    var grid    = registry.byId("offers_grid"),
+                        sel       = grid.get("selectionArray"),
+                        counter   = sel.length;
+
+                    registry.byId("page").get("messageList").removeAll();
+
+                    sel.forEach(function(offerId){ /* Get an Offer from the selected list */
+                        console.log("I'm trying to delete Offer with id = [" + offerId + "]");
+
+                        /* Remove the VPS */
+                        when(store.remove(offerId),
+                            /* If success, process the next Offer until the list is empty */
+                            function(){
+                                console.log("Offer with id = [" + offerId + "] removed");
+                                sel.splice(sel.indexOf(offerId),1);
+                                grid.refresh();
+                                if (--counter) {
+                                    self.cancel();
+                                }
+                            },
+                            /* If failure, call the error handler */
+                            function(e){
+                                displayError(e);
+                                if (--counter) {
+                                    self.cancel();
+                                }
+                            }
+                        );
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

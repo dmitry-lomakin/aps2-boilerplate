@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/aps/2/ui/runtime/client/aps/aps.js"></script>
+
+    <script>
+        require([
+            "dojo/when",
+            "dijit/registry",
+            "dojox/mvc/getPlainValue",
+            "dojox/mvc/at",
+
+            "aps/ResourceStore",
+            "aps/WizardData",
+            "aps/load",
+            "aps/Memory",
+
+            "./displayError.js",
+
+            "dojo/text!./newoffer.json",
+
+            "aps/ready!"
+        ], function (
+            when,
+            registry,
+            getPlainValue,
+            at,
+
+            Store,
+            wd,
+            load,
+            Memory,
+
+            displayError,
+
+            newOffer
+        ) {
+            /* Declare the data source */
+            var store = new Store({
+                    apsType:   "http://for93t.github.com/aps2-boilerplate/offer/1.0",
+                    target:    "/aps/2/resources/" + aps.context.vars.app.aps.id + "/offers"
+                }),
+                model = JSON.parse(newOffer),
+                types = new Memory({
+                    idProperty: "value",
+                    data: [
+                        { value: "server", label: "Server" },
+                        { value: "workstation", label: "Workstation" }
+                    ]
+                });
+
+
+            var widgets = ["aps/PageContainer", {
+                id: "page"
+            }, [
+                ["aps/FieldSet", {
+                    id: "offerNew_general",
+                    title: true
+                }, [
+                    ["aps/TextBox", {
+                        id: "offerNew_offerName",
+                        label: _("Offer Name"),
+                        value: at(model, "profileName"),
+                        required: true
+                    }],
+                    ["aps/TextBox", {
+                        id: "offerNew_description",
+                        label: _("Description"),
+                        value: at(model, "description")
+                    }]
+                ]],
+                ["aps/FieldSet", {
+                    id: "offerNew_props",
+                    title: true
+                }, [
+                    ["aps/Select", {
+                        id: "offerNew_productType",
+                        label: _("Type"),
+                        value: at(model.product, "type"),
+                        store: types
+                    }],
+                    ["aps/TextBox", {
+                        id: "offerNew_productName",
+                        label: _("Product name"),
+                        value: at(model.product, "name")
+                    }]
+                ]]
+            ]];
+
+            load(widgets).then(function() {
+                aps.app.onCancel = function() {
+                    aps.apsc.gotoView("offers");
+                };
+
+                aps.app.onSubmit = function() {
+                    var page = registry.byId("page");
+                    if (!page.validate()) {
+                        aps.apsc.cancelProcessing();
+                        return;
+                    }
+                    when(store.put(getPlainValue(model)),
+                        function() {
+                            aps.apsc.gotoView("offers");
+                        },
+                        function(err) {
+                            displayError(err);
+                        }
+                    );
+                };
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

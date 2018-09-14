@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/aps/2/ui/runtime/client/aps/aps.js"></script>
+
+    <script>
+        require([
+            "dijit/registry",
+            "dojo/when",
+            "dojox/mvc/getPlainValue",
+            "dojox/mvc/at",
+            "dojox/mvc/getStateful",
+
+            "aps/ResourceStore",
+            "aps/load",
+            "aps/Memory",
+
+            "./displayError.js",
+
+            "aps/ready!"
+        ], function (
+            registry,
+            when,
+            getPlainValue,
+            at,
+            getStateful,
+
+            Store,
+            load,
+            Memory,
+
+            displayError
+        ) {
+            /* Declare data sources */
+            var store = new Store({
+                    apsType:    "http://for93t.github.com/aps2-boilerplate/offer/1.0",
+                    target:     "/aps/2/resources/"
+                }),
+                model,
+                types = new Memory({
+                    idProperty: "value",
+                    data: [
+                        { value: "server", label: "Server" },
+                        { value: "workstation", label: "Workstation" }
+                    ]
+                });
+
+            store.get(aps.context.vars.offer.aps.id).then(function(object) {
+                model = getStateful(object);
+
+                var widgets = ["aps/PageContainer", {
+                    id: "page"
+                }, [
+                    ["aps/FieldSet", {
+                        id: "offerEdit_general",
+                        title: true
+                    }, [
+                        ["aps/TextBox", {
+                            id: "offerEdit_offerName",
+                            label: _("Offer Name"),
+                            value: at(model, "profileName"),
+                            required: true
+                        }],
+                        ["aps/TextBox", {
+                            id: "offerEdit_description",
+                            label: _("Description"),
+                            value: at(model, "description")
+                        }]
+                    ]],
+                    ["aps/FieldSet", {
+                        id: "offerEdit_props",
+                        title: true
+                    }, [
+                        ["aps/Select", {
+                            id: "offerEdit_productType",
+                            label: _("Type"),
+                            value: at(model.product, "type"),
+                            store: types
+                        }],
+                        ["aps/TextBox", {
+                            id: "offerEdit_productName",
+                            label: _("Product name"),
+                            value: at(model.product, "name")
+                        }]
+                    ]]
+                ]];
+
+                return load(widgets);
+            }).then(function(){
+
+                aps.app.onCancel = function() {
+                    aps.apsc.gotoView("offers");
+                };
+
+                aps.app.onSubmit = function() {
+                    var page = registry.byId("page");
+                    if (!page.validate()) {
+                        aps.apsc.cancelProcessing();
+                        return;
+                    }
+                    when(store.put(getPlainValue(model)),
+                        function(){	aps.apsc.gotoView("offers"); },
+                        displayError
+                    );
+                };
+            }).otherwise(displayError);
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

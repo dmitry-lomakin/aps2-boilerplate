@@ -1,9 +1,26 @@
 {
   "defaults": {
     "appId": "http://for93t.github.com/aps2-boilerplate/app/1.0",
-    "apsName": "VPS Demo with Deployment Configuration",
+    "apsName": "Set Product via Deployment Configuration",
     "apsVersion": "2.2",
-    "apsResources": [],
+    "apsResources": [
+      {
+        "fields": {
+          "profileName": "Server backup 25Gb",
+          "description": "Provides backup services for servers with the storage limit of 25 gigabytes",
+          "product": {
+            "type": "server",
+            "name": "server_product_25gb"
+          }
+        },
+        "relations": {
+          "app": "idglobals"
+        },
+        "apsType":"http://for93t.github.com/aps2-boilerplate/offer/1.0",
+        "type": "http://aps-standard.org/types/core/profile/service/1.0",
+        "id": "idc2532c137c7a58"
+      }
+    ],
     "resourceTypes": [
       {
         "name": "VPS Demo - App REF",

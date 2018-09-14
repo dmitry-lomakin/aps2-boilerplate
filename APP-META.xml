@@ -2,7 +2,7 @@
     <id>http://for93t.github.com/aps2-boilerplate</id>
     <name>APS2 Boilerplate</name>
     <version>2.0</version>
-    <release>0</release>
+    <release>15</release>
     <homepage>https://github.com/for93t/aps2-boilerplate</homepage>
     <vendor>
         <name>Dmitry Lomakin</name>
@@ -18,6 +18,30 @@
         <categories>
             <category>Samples</category>
         </categories>
+
+        <navigation id="pcp" label="Offer Management">
+            <var type-id="http://for93t.github.com/aps2-boilerplate/app/1.0" name="app" />
+            <plugs-to id="http://www.aps-standard.org/ui/application" />
+            <item id="offers" label="Offer Management">
+                <view id="offers" label="Offers">
+                    <view id="offer-new" label="New Offer">
+                        <controls>
+                            <cancel />
+                            <submit />
+                        </controls>
+                    </view>
+                    <view id="offer-edit" label="Edit {offer.name}">
+                        <controls>
+                            <cancel />
+                            <submit />
+                        </controls>
+                        <var type-id="http://for93t.github.com/aps2-boilerplate/offer/1.0"
+                             name="offer" />
+                    </view>
+                </view>
+            </item>
+        </navigation>
+
         <navigation id="ccp" label="VPS Management">
             <plugs-to id="http://www.parallels.com/ccp/2"/>
             <var name="management" type-id="http://for93t.github.com/aps2-boilerplate/management/1.0"/>
@@ -45,6 +69,14 @@
         <presentation>
             <name>VPS cloud globals</name>
             <summary>VPS cloud application global service</summary>
+        </presentation>
+    </service>
+    <service id="offers">
+        <schema path="schemas/offers.schema.gen"/>
+        <code engine="php" path="scripts/offers.php"/>
+        <presentation>
+            <name>VPS Offers</name>
+            <summary>Service profiles for the cloud virtual private servers</summary>
         </presentation>
     </service>
     <service id="managements">

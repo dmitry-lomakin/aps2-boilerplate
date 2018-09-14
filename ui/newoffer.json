@@ -1,0 +1,9 @@
+{
+  "aps": {
+    "type": "http://for93t.github.com/aps2-boilerplate/offer/1.0"
+  },
+  "product": {
+    "name": "",
+    "type": "server"
+  }
+}
