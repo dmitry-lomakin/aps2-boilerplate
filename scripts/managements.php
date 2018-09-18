@@ -56,7 +56,8 @@ class management extends \APS\ResourceBase
         $this->log("Starting", __METHOD__);
 
         $this->log("The subscription has been changed to ("
-            . print_r($this->subscription->getBaseResource(), true) . ")",
+            . print_r($this->subscription->getBaseResource(), true) . "), "
+            . "(event = " . print_r($event, true) . ")",
             __METHOD__);
 
         $this->log("Stopping", __METHOD__);
