@@ -24,7 +24,7 @@ define([
                 /* Declare the data sources */
                 this.vpsModel = getStateful({
                     "aps": {
-                        "type": "http://for93t.github.com/aps2-boilerplate/vps/1.0"
+                        "type": "http://for93t.github.com/aps2-boilerplate/vps/2.1"
                     },
                     "name": "",
                     "os": "centos7"
@@ -75,7 +75,7 @@ define([
                 aps.context.subscriptionId = aps.context.vars.management.aps.subscription;
 
                 var vpsStore = new Store({
-                    apsType: "http://for93t.github.com/aps2-boilerplate/vps/1.0",
+                    apsType: "http://for93t.github.com/aps2-boilerplate/vps/2.1",
                     target: "/aps/2/resources/" + aps.context.vars.management.aps.id + "/vpses"
                 });
                 when(vpsStore.put(getPlainValue(this.vpsModel)),

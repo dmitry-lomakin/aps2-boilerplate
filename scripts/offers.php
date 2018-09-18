@@ -36,7 +36,7 @@ class offer extends \APS\ResourceBase
     public $app;
 
     /**
-     * @link("http://for93t.github.com/aps2-boilerplate/vps/1.0[]")
+     * @link("http://for93t.github.com/aps2-boilerplate/vps/2.1[]")
      */
     public $vpses;
 
