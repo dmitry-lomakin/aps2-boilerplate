@@ -39,7 +39,7 @@ class management extends \APS\ResourceBase
         $onSubscriptionChanged = new \APS\EventSubscription(\APS\EventSubscription::Changed,"onSubscriptionChanged");
         $onSubscriptionChanged->source = new stdClass;
         $onSubscriptionChanged->source->type = "http://aps-standard.org/types/core/subscription/1.0";
-        \APS\Request::getController()->subscribe($this->subscription->getBaseResource(), $onSubscriptionChanged);
+        \APS\Request::getController()->subscribe($this, $onSubscriptionChanged);
 
         $this->log("Stopping", __METHOD__);
     }
