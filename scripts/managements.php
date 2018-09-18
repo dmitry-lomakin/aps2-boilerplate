@@ -38,7 +38,7 @@ class management extends \APS\ResourceBase
 
         $onSubscriptionChanged = new \APS\EventSubscription(\APS\EventSubscription::Changed,"onSubscriptionChanged");
         $onSubscriptionChanged->source = new stdClass;
-        $onSubscriptionChanged->source->type = "http://aps-standard.org/types/core/subscription/1.0";
+        $onSubscriptionChanged->source->type = "http://parallels.com/aps/types/pa/subscription/1.0";
         \APS\Request::getController()->subscribe($this, $onSubscriptionChanged);
 
         $this->log("Stopping", __METHOD__);
