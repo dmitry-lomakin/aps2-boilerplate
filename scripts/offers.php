@@ -11,6 +11,9 @@ class Product
      * @type("string")
      * @title("Type")
      * @description("Backup device type")
+     *
+     * @option("server","Server")
+     * @option("workstation","Workstation")
      */
     public $type;
 
@@ -36,7 +39,7 @@ class offer extends \APS\ResourceBase
     public $app;
 
     /**
-     * @link("http://for93t.github.com/aps2-boilerplate/vps/2.1[]")
+     * @link("http://for93t.github.com/aps2-boilerplate/vps/3.0[]")
      */
     public $vpses;
 

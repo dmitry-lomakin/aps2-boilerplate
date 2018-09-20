@@ -3,19 +3,13 @@
 require "aps/2/runtime.php";
 
 /**
- * @type("http://for93t.github.com/aps2-boilerplate/vps/2.1")
+ * @type("http://for93t.github.com/aps2-boilerplate/vps/3.0")
  * @implements("http://aps-standard.org/types/core/resource/1.0")
  */
 class vps extends APS\ResourceBase
 {
     /**
-     * @link("http://for93t.github.com/aps2-boilerplate/offer/1.0")
-     * @required
-     */
-    public $offer;
-
-    /**
-     * @link("http://for93t.github.com/aps2-boilerplate/management/1.0")
+     * @link("http://for93t.github.com/aps2-boilerplate/management/2.0")
      * @required
      */
     public $management;

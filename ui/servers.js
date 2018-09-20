@@ -12,7 +12,7 @@ define([
 
             /* Define the data store */
             var vpsStore = new Store({
-                apsType: "http://for93t.github.com/aps2-boilerplate/vps/2.1",
+                apsType: "http://for93t.github.com/aps2-boilerplate/vps/3.0",
                 target: "/aps/2/resources/"
             });
             /* Define a handler for the *New* button click */

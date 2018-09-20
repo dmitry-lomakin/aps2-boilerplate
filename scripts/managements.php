@@ -7,7 +7,7 @@ require "aps/2/runtime.php";
  *
  * @property \APS\ResourceProxy $subscription
  *
- * @type("http://for93t.github.com/aps2-boilerplate/management/1.0")
+ * @type("http://for93t.github.com/aps2-boilerplate/management/2.0")
  * @implements("http://aps-standard.org/types/core/subscription/service/1.0")
  * @implements("http://aps-standard.org/types/core/resource/1.0")
  */
@@ -20,8 +20,14 @@ class management extends \APS\ResourceBase
 	*/
 	public $app;
 
-	/**
-	 * @link("http://for93t.github.com/aps2-boilerplate/vps/2.1[]")
+    /**
+     * @link("http://for93t.github.com/aps2-boilerplate/offer/1.0")
+     * @required
+     */
+    public $offer;
+
+    /**
+	 * @link("http://for93t.github.com/aps2-boilerplate/vps/3.0[]")
 	 */
 	public $vpses;
 
@@ -36,10 +42,11 @@ class management extends \APS\ResourceBase
             __METHOD__
         );
 
-        $onSubscriptionChanged = new \APS\EventSubscription(\APS\EventSubscription::Changed,"onSubscriptionChanged");
-        $onSubscriptionChanged->source = new stdClass;
-        $onSubscriptionChanged->source->type = "http://parallels.com/aps/types/pa/subscription/1.0";
-        \APS\Request::getController()->subscribe($this, $onSubscriptionChanged);
+        $onSubscriptionChanged = new \APS\EventSubscription(
+            \APS\EventSubscription::SubscriptionLimitChanged,
+            "onSubscriptionChanged"
+        );
+        $onSubscriptionChanged->source = $this->subscription->aps->id;
 
         $this->log("Stopping", __METHOD__);
     }

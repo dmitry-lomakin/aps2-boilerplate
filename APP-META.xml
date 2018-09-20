@@ -2,7 +2,7 @@
     <id>http://for93t.github.com/aps2-boilerplate</id>
     <name>APS2 Boilerplate</name>
     <version>2.0</version>
-    <release>21</release>
+    <release>22</release>
     <homepage>https://github.com/for93t/aps2-boilerplate</homepage>
     <vendor>
         <name>Dmitry Lomakin</name>
@@ -44,7 +44,7 @@
 
         <navigation id="ccp" label="VPS Management">
             <plugs-to id="http://www.parallels.com/ccp/2"/>
-            <var name="management" type-id="http://for93t.github.com/aps2-boilerplate/management/1.0"/>
+            <var name="management" type-id="http://for93t.github.com/aps2-boilerplate/management/2.0"/>
             <view id="servers" label="Servers" src="ui/servers.js">
                 <view id="server-new" label="New VPS" src="ui/server-new.js">
                     <controls>
