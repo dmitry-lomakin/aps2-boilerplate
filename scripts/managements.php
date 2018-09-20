@@ -27,6 +27,13 @@ class management extends \APS\ResourceBase
     public $offer;
 
     /**
+     * @type("http://aps-standard.org/types/core/resource/1.0#Counter")
+     * @title("Available storage, Gb")
+     * @description("Available storage in gigabytes")
+     */
+    public $storage;
+
+    /**
 	 * @link("http://for93t.github.com/aps2-boilerplate/vps/3.0[]")
 	 */
 	public $vpses;
