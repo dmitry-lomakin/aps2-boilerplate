@@ -21,7 +21,7 @@ class management extends \APS\ResourceBase
 	public $app;
 
     /**
-     * @link("http://for93t.github.com/aps2-boilerplate/offer/1.0")
+     * @link("http://for93t.github.com/aps2-boilerplate/offer/2.0")
      * @required
      */
     public $offer;
@@ -32,7 +32,7 @@ class management extends \APS\ResourceBase
 	public $vpses;
 
 	static private $validOfferApsTypes = array(
-	    'http://for93t.github.com/aps2-boilerplate/offer/1.0',
+	    'http://for93t.github.com/aps2-boilerplate/offer/2.0',
     );
 
     /**

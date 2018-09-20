@@ -2,7 +2,7 @@
     <id>http://for93t.github.com/aps2-boilerplate</id>
     <name>APS2 Boilerplate</name>
     <version>2.0</version>
-    <release>24</release>
+    <release>25</release>
     <homepage>https://github.com/for93t/aps2-boilerplate</homepage>
     <vendor>
         <name>Dmitry Lomakin</name>
@@ -35,7 +35,7 @@
                             <cancel />
                             <submit />
                         </controls>
-                        <var type-id="http://for93t.github.com/aps2-boilerplate/offer/1.0"
+                        <var type-id="http://for93t.github.com/aps2-boilerplate/offer/2.0"
                              name="offer" />
                     </view>
                 </view>

@@ -11,7 +11,7 @@ require "aps/2/runtime.php";
 class app extends APS\ResourceBase
 {
     /**
-     * @link("http://for93t.github.com/aps2-boilerplate/offer/1.0[]")
+     * @link("http://for93t.github.com/aps2-boilerplate/offer/2.0[]")
      */
     public $offers;
 

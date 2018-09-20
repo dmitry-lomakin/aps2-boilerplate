@@ -27,7 +27,7 @@ class Product
 }
 
 /**
- * @type("http://for93t.github.com/aps2-boilerplate/offer/1.0")
+ * @type("http://for93t.github.com/aps2-boilerplate/offer/2.0")
  * @implements("http://aps-standard.org/types/core/resource/1.0")
  * @implements("http://aps-standard.org/types/core/profile/service/1.0")
  */

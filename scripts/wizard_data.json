@@ -16,7 +16,7 @@
         "relations": {
           "app": "idglobals"
         },
-        "apsType":"http://for93t.github.com/aps2-boilerplate/offer/1.0",
+        "apsType":"http://for93t.github.com/aps2-boilerplate/offer/2.0",
         "type": "http://aps-standard.org/types/core/profile/service/1.0",
         "id": "idc2532c137c7a58"
       }
