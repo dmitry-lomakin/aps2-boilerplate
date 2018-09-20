@@ -46,7 +46,9 @@ class management extends \APS\ResourceBase
             \APS\EventSubscription::SubscriptionLimitChanged,
             "onSubscriptionChanged"
         );
-        $onSubscriptionChanged->source = $this->subscription->aps->id;
+        $onSubscriptionChanged->source = new stdClass;
+        $onSubscriptionChanged->source->id = $this->subscription->aps->id;
+        \APS\Request::getController()->subscribe($this, $onSubscriptionChanged);
 
         $this->log("Stopping", __METHOD__);
     }
