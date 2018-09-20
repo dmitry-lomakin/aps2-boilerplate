@@ -82,10 +82,11 @@ class management extends \APS\ResourceBase
         $this->log("Retrieving the subscription resources", __METHOD__);
 
         $apsController = \APS\Request::getController();
-        $subscriptionResources = $apsController->getResources(
-            '',
-            $apsController->getIo()->resourcePath() . "/aps/2/resources/{$subscriptionApsId}/resources"
+        $subscriptionResourcesJson = $apsController->getIo()->sendRequest(\APS\Proto::GET,
+            $apsController->getIo()->resourcePath() . "/{$subscriptionApsId}/resources"
         );
+
+        $subscriptionResources = json_decode($subscriptionResourcesJson, false);
 
         if (empty($subscriptionResources) || !is_array($subscriptionResources)) {
             throw new \Exception(
@@ -95,7 +96,7 @@ class management extends \APS\ResourceBase
 
         $offerApsId = null;
         foreach ($subscriptionResources as $eachResource) {
-            if (in_array($eachResource->type, self::$validOfferApsTypes)) {
+            if (in_array($eachResource->apsType, self::$validOfferApsTypes)) {
                 $offerApsId = $eachResource->apsId;
 
                 break;
@@ -111,7 +112,21 @@ class management extends \APS\ResourceBase
         }
 
         $this->log(
-            "The offer aps.id is found ({$offerApsId}); continue to it's full resource",
+            "The offer aps.id is found ({$offerApsId}); continue to it's APS resource descriptor retrieval",
+            __METHOD__
+        );
+
+        if ($this->offer->aps->id === $offerApsId) {
+            $this->log(
+                "The offer has not been changed, stop further processing.",
+                __METHOD__
+            );
+
+            return;
+        }
+
+        $this->log(
+            "The offer has been changed, continue to it's APS resource descriptor retrieval",
             __METHOD__
         );
 
@@ -125,17 +140,20 @@ class management extends \APS\ResourceBase
 
         $this->log(
             "The offer descriptor is found, let's update the reference to it",
-            __METHOD__);
+            __METHOD__
+        );
 
         $offerLinkingResult = $apsController->linkResource($this, 'offer', $offerResource);
         if (! $offerLinkingResult) {
             throw new \Exception(
-                "Failed to update the link to the offer (" . print_r($offerLinkingResult, true) . ")"
+                "Failed to update the link to the offer ("
+                . print_r($offerLinkingResult, true) . ")"
             );
         }
 
+        /** @var \APS\ResourceProxy $offerLinkingResult */
         $this->log(
-            "The offer has been updated: " . print_r($offerLinkingResult, true),
+            "The offer has been updated",
             __METHOD__
         );
         $this->log("Stopping", __METHOD__);
@@ -143,7 +161,7 @@ class management extends \APS\ResourceBase
 
     public function offerLink($offer)
     {
-        $this->log("Calling with the following argument: " . print_r($offer), __METHOD__);
+        $this->log("Calling with the following argument: " . print_r($offer, true), __METHOD__);
     }
 
     /**
