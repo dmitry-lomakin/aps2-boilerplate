@@ -14,6 +14,7 @@ class Product
      *
      * @option("server","Server")
      * @option("workstation","Workstation")
+     * @required
      */
     public $type;
 
