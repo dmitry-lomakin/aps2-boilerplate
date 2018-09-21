@@ -9,7 +9,7 @@ require "aps/2/runtime.php";
 class vps extends APS\ResourceBase
 {
     /**
-     * @link("http://for93t.github.com/aps2-boilerplate/management/2.0")
+     * @link("http://for93t.github.com/aps2-boilerplate/management/3.0")
      * @required
      */
     public $management;

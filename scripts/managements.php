@@ -7,7 +7,7 @@ require "aps/2/runtime.php";
  *
  * @property \APS\ResourceProxy $subscription
  *
- * @type("http://for93t.github.com/aps2-boilerplate/management/2.0")
+ * @type("http://for93t.github.com/aps2-boilerplate/management/3.0")
  * @implements("http://aps-standard.org/types/core/subscription/service/1.0")
  * @implements("http://aps-standard.org/types/core/resource/1.0")
  */
