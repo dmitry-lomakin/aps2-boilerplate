@@ -168,7 +168,7 @@ class management extends \APS\ResourceBase
 
     public function offerLink($offer)
     {
-        $this->log("Calling with the following argument: " . print_r($offer, true), __METHOD__);
+        $this->log("Calling with the following arguments: type={$offer->product->type}; product name={$offer->product->name}; storage limit={$this->storage->limit}.", __METHOD__);
     }
 
     /**
